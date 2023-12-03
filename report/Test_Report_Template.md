@@ -1,0 +1,15 @@
+# Test Report Template 
+
+| Precondition    | Action | Expected behaviour  | Actual behaviour  | Passed?  |
+|---------------|-------|---|---|---|
+| Navigated to /register, not logged in, empty database | Enter username "user1", email "email1@gmail.com", password "pw", press "Register"  | User account created, redirect to /login  |   |   |
+| Navigated to /login, not logged in, user "user1" with password "pw" already registered | Enter username "user1", password "pw", press "Login" | User logged in, redirect to /main  |   |   |
+| Navigated to /main, logged in as user1 | Click on "Asset marketplace" | Redirect to /marketplace | |   |
+| Navigated to /marketplace, logged in as user1| Refresh page, click on upload, input title "title1", description "description1", price 0, choose a PNG (other image types work too), press upload | Asset gets uploaded to marketplace and is displayed   |   |   |
+| Navigated to /marketplace, logged in as user2, 1 asset already in database, uploaded by different user, asset not purchased yet by user2 | Click on the asset in the marketplace, click "Buy it now" | Asset bought by user2, can be checked by navigating to /assets while logged in as user2  |   |   |
+| Navigated to /main, logged in as user2, 1 asset already purchased | Refresh page, Press New notebook, enter notebook name "N1", press Create | Notebook with name N1 created, can be seen in column at the left  |   |   |
+| Navigated to /main, logged in as user2, 1 asset already purchased, one notebook already created | Click on notebook in the column to the left, click create page, enter page name "p1", press "Create" | Page with title P1 created, is displayed under the notebook  |   |   |
+| Navigated to /main, logged in as user2, 1 asset already purchased, one notebook already created, with 1 page | Click on the page, click on the asset, drag asset and rotate, then press Ctrl+S| Asset appears on page when asset is clicked and can be dragged and rotated, is saved when pressed Ctrl+S  |   |   |
+| Navigated to /main, logged in as user2, one notebook already created | Click bin icon next to notebook, click delete | Notebook gets deleted  |   |   |
+| Navigated to /main, logged in as user2, asset already purchased | Click bin icon in corner of asset, click delete | Asset gets deleted  |   |   |
+

@@ -1,0 +1,14 @@
+.resize-box {
+    height: 10px;
+    width: 10px;
+
+    border-radius: 100%;
+    background: #FFFFFF;
+    border: solid 1px #888888;
+    position: absolute;
+
+    cursor: pointer;
+    pointer-events: all;
+    bottom: -5px;
+    right: -5px;
+}

@@ -1,0 +1,13 @@
+.alert-fade {
+  animation: fade-out 0.9s ease-in;
+  opacity: 0;
+}
+
+@keyframes fade-out {
+  0% {
+      opacity: 1;
+  }
+    100% {
+      opacity: 0;
+  }
+}

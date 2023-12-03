@@ -1,0 +1,12 @@
+.text {
+    position: relative;
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    margin: 15px;
+    background-color: transparent;
+    user-select: none;
+}
+
+input:focus {
+    outline: none;
+}

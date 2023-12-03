@@ -1,0 +1,11 @@
+.canvas {
+    overflow: hidden;
+    position: relative;
+}
+
+.selection-box {
+    position: absolute;
+    outline: solid #AF69ED 1px;
+    background-color: #af69ed10;
+    z-index: 1000
+}

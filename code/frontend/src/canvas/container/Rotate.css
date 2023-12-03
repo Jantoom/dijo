@@ -1,0 +1,16 @@
+.rotate-button {
+    position: absolute;
+    top: -30px;
+    margin-left: 50%;
+
+    background-color: #FFFFFF;
+    border: solid 1px #888888;
+    height: 15px;
+    width: 15px;
+    border-radius: 100%;
+
+    transform: translate(-50%);
+
+    cursor: pointer;
+    user-select: none;
+}

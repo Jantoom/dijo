@@ -1,0 +1,162 @@
+@localDns = 127.0.0.1:6400
+@serverDns = dijo-2107789793.us-east-1.elb.amazonaws.com
+@baseUrl = http://{{serverDns}}/api/v1
+
+### ------------------------------ USERS ------------------------------
+@testAuthorization = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NTkzMzUxMSwianRpIjoiM2ZiMTA2MDYtMWIyMS00OGNjLWE4NWQtYzEyNWFiOGUwMjg5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjFhNTk4NTc5LTMyYTctNGVhMC05YjZkLTcyMjFhZWYyMTIwOCIsIm5iZiI6MTY4NTkzMzUxMSwiZXhwIjoxNjg1OTUxNTExfQ.T5LPdehsJi82aNoCy5AiI2cybHfll_TLWMJR_ILBlWA
+
+### Query the health of the user service.
+GET {{baseUrl}}/users/health
+
+### Signs up a new user.
+POST {{baseUrl}}/users/signup
+Content-Type: application/x-www-form-urlencoded
+
+&email=sementha2@example.org
+&username=sementha2
+&password=123
+
+### Logs in a user.
+POST {{baseUrl}}/users/login
+Content-Type: application/x-www-form-urlencoded
+
+&username=sementha
+&password=123
+
+### Logs out a user.
+GET {{baseUrl}}/users/logout
+Authorization: {{testAuthorization}}
+
+### ------------------------------ NOTEBOOKS ------------------------------
+@testNotebook = e43edeb1-f1c0-4ba6-b364-d6f986080d72
+
+### Query the health of the notebook service.
+GET {{baseUrl}}/notebooks/health
+
+### List all the notebooks associated with the session account.
+GET {{baseUrl}}/notebooks
+Authorization: {{testAuthorization}}
+
+### Add a new notebook associated with the session account.
+POST {{baseUrl}}/notebooks
+Authorization: {{testAuthorization}}
+Content-Type: application/json
+
+{
+    "title": "Sementha's Notebook",
+    "description": "Notey woteys"
+}
+
+### Get details for a particular notebook associated with the session account.
+GET {{baseUrl}}/notebooks/{{testNotebook}}
+Authorization: {{testAuthorization}}
+
+### Edit details about a notebook associated with the session account.
+PUT {{baseUrl}}/notebooks/{{testNotebook}}
+Authorization: {{testAuthorization}}
+Content-Type: application/json
+
+{
+    "title": "Sementha's Notebook",
+    "description": "bread"
+}
+
+### Deletes a notebook associated with the session account.
+DELETE {{baseUrl}}/notebooks/{{testNotebook}}
+Authorization: {{testAuthorization}}
+
+### Add a new page associated with the notebook and session account.
+POST {{baseUrl}}/notebooks/{{testNotebook}}
+Authorization: {{testAuthorization}}
+Content-Type: application/json
+
+{
+    "title": "A New Page",
+    "content": "So today someone called me Sementha..."
+}
+
+### Get details for a particular page associated with the notebook and session account.
+GET {{baseUrl}}/notebooks/{{testNotebook}}/0
+Authorization: {{testAuthorization}}
+
+### Save details about a page associated with the notebook and session account.
+PUT {{baseUrl}}/notebooks/{{testNotebook}}/0
+Authorization: {{testAuthorization}}
+Content-Type: application/json
+
+{
+    "title": "An Edited Page",
+    "content": "My CSSE6400 team is so cool."
+}
+
+### Deletes a page associated with the notebook and session account.
+DELETE {{baseUrl}}/notebooks/{{testNotebook}}/0
+Authorization: {{testAuthorization}}
+
+### ------------------------------ ASSETS ------------------------------
+@testAsset = 6d4f4b54-25ff-45ae-9aba-ba05794a5e40
+
+### Query the health of the asset service.
+GET {{baseUrl}}/assets/health
+
+### List all the assets registered with Dijo.
+GET {{baseUrl}}/assets?purchased=False
+Authorization: {{testAuthorization}}
+
+### List all the assets registered with session account in Dijo.
+GET {{baseUrl}}/assets?purchased=True
+Authorization: {{testAuthorization}}
+
+### Upload a new asset to the marketplace.
+POST {{baseUrl}}/assets
+Authorization: {{testAuthorization}}
+Content-Type: multipart/form-data; boundary=--UploadBounds
+
+--UploadBounds
+Content-Disposition: form-data; name="text"
+Content-Type: application/x-www-form-urlencoded
+
+&name=Pog
+&description=sheesh
+&price=0.0
+--UploadBounds
+Content-Disposition: form-data; name="file"; filename="README.md"
+
+< ./README.md
+--UploadBounds--
+
+### Upload a new asset to the marketplace.
+POST {{baseUrl}}/assets
+Authorization: {{testAuthorization}}
+Content-Type: application/x-www-form-urlencoded
+
+&name=Pog
+&description=sheesh
+&price=0.0
+&file=@./README.md
+
+### Get details for a particular asset.
+GET {{baseUrl}}/assets/{{testAsset}}
+Authorization: {{testAuthorization}}
+
+### Purchase an asset for an account.
+POST {{baseUrl}}/assets/{{testAsset}}
+Authorization: {{testAuthorization}}
+Content-Type: application/json
+
+{
+
+}
+
+### ------------------------------ ADMIN ------------------------------
+
+### Query the health of the admin service.
+GET {{baseUrl}}/admin/health
+
+### List all the users.
+GET {{baseUrl}}/admin/users
+Authorization: {{testAuthorization}}
+
+### Deletes all references to an asset.
+DELETE {{baseUrl}}/admin/{{testAsset}}
+Authorization: {{testAuthorization}}

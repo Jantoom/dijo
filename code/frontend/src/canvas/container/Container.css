@@ -1,0 +1,16 @@
+.item-container {
+    position: absolute;
+    pointer-events: all;
+    user-select: none;
+    background-color: transparent;
+    cursor: grab;
+}
+
+.item-container:hover {
+    outline: solid #AF69ED 2px;
+}
+
+.selected {
+    outline: solid #AF69ED 2px;
+    z-index: 1000;
+}
